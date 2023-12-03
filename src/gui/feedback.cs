@@ -607,7 +607,7 @@ public class FeedbackWindow
 
 	private void putNonStandardIcons() {
 		Pixbuf pixbuf;
-		pixbuf = new Pixbuf (null, Util.GetImagePath(false) + "stock_bell_green.png");
+		pixbuf = Chronojump.MyPixbuf.Get(null, Util.GetImagePath(false) + "stock_bell_green.png");
 		image_repetitive_best_tf_tc.Pixbuf = pixbuf;
 		image_repetitive_best_time.Pixbuf = pixbuf;
 		image_repetitive_height_greater.Pixbuf = pixbuf;
@@ -626,7 +626,7 @@ public class FeedbackWindow
 		image_encoder_peakpower_higher.Pixbuf = pixbuf;
 		image_repetitive_test_good.Pixbuf = pixbuf;
 		
-		pixbuf = new Pixbuf (null, Util.GetImagePath(false) + "stock_bell_red.png");
+		pixbuf = Chronojump.MyPixbuf.Get(null, Util.GetImagePath(false) + "stock_bell_red.png");
 		image_repetitive_worst_tf_tc.Pixbuf = pixbuf;
 		image_repetitive_worst_time.Pixbuf = pixbuf;
 		image_repetitive_height_lower.Pixbuf = pixbuf;
@@ -645,7 +645,7 @@ public class FeedbackWindow
 		image_encoder_peakpower_lower.Pixbuf = pixbuf;
 		image_repetitive_test_bad.Pixbuf = pixbuf;
 
-		pixbuf = new Pixbuf (null, Util.GetImagePath(false) + "image_info.png");
+		pixbuf = Chronojump.MyPixbuf.Get(null, Util.GetImagePath(false) + "image_info.png");//[By Joeries]
 		image_clusters_info.Pixbuf = pixbuf;
 	}
 
