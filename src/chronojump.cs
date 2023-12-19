@@ -295,7 +295,7 @@ public class ChronoJump
             }
         }
 
-        Catalog.Init("chronojump", System.IO.Path.Combine(Util.GetPrefixDir(), "share/locale"));
+        Catalog.Init("chronojump", System.IO.Path.Combine(Util.GetPrefixDir(), "share", "locale"));//To use the specific path separator on certain OS [By Joeries]
 
         new ChronoJump(args);
     }
