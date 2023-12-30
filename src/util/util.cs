@@ -1854,14 +1854,44 @@ public class Util
         return intsCut;
     }
 
+    public static string GetRBin ()
+    {
+         string bin = "R";
 
-    public static void RunRScript(string rScript)
+          if (UtilAll.IsWindows())
+            {
+            if (System.Environment.Is64BitProcess)
+                return System.IO.Path.Combine (GetPrefixDir(), @"R\bin\x64\R.exe");
+            else
+                return System.IO.Path.Combine (GetPrefixDir(), @"R\bin\i386\R.exe");
+        } else if (operatingSystem == UtilAll.OperatingSystems.MACOSX)
+            return Constants.ROSX;
+
+        return bin;
+    }
+    public static string GetRscriptBin ()
+    {
+         string bin = "Rscript";
+
+          if (UtilAll.IsWindows())
+            {
+            if (System.Environment.Is64BitProcess)
+                return System.IO.Path.Combine (GetPrefixDir(), @"R\bin\x64\Rscript.exe");
+            else
+                return System.IO.Path.Combine (GetPrefixDir(), @"R\bin\i386\Rscript.exe");
+        } else if (operatingSystem == UtilAll.OperatingSystems.MACOSX)
+            return Constants.RScriptOSX;
+
+        return bin;
+    }
+
+    public static void RunR (string rScript)
     {
         //CancelRScript = false;
 
         ProcessStartInfo pinfo;
         Process r;
-        string rBin = "R";
+
         //If output file is not given, R will try to write in the running folder
         //in which we may haven't got permissions
         string outputFile = rScript + ".Rout";
@@ -1869,11 +1899,9 @@ public class Util
         if (File.Exists(outputFile))
             File.Delete(outputFile);
 
-        if (UtilAll.IsWindows())
-            rBin = System.IO.Path.Combine(GetPrefixDir(), "bin/R.exe");
-        else if (operatingSystem == UtilAll.OperatingSystems.MACOSX)
-            rBin = Constants.ROSX;
-
+        string rBin = GetRBin ();
+        LogB.Information ("rBin: " + rBin);
+        
         pinfo = new ProcessStartInfo();
         pinfo.FileName = rBin;
         pinfo.Arguments = "CMD BATCH --no-save " + rScript + " " + outputFile;
